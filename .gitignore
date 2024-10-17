@@ -22,3 +22,19 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+target
+rebel.xml
+.project
+.classpath
+.settings
+bin
+*.jasper
+*.log
+*.mdmp
+login-all*.js
+login-all*.css
+index-all*.js
+index-all*.css
+.idea
+*.iml
