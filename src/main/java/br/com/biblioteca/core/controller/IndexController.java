@@ -1,4 +1,4 @@
-package br.com.biblioteca.controller;
+package br.com.biblioteca.core.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
