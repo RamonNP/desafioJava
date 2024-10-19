@@ -1,21 +1,14 @@
 package br.com.biblioteca.core.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import javax.persistence.*;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "membro")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Membro {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "idprojeto", nullable = false)
-    private Projeto projeto; // Relacionamento com a classe Projeto
-
-    @ManyToOne
-    @JoinColumn(name = "idpessoa", nullable = false)
-    private Pessoa pessoa; // Relacionamento com a classe Pessoa
+    private Pessoa pessoa;  // Referência ao objeto Pessoa
+    private Projeto projeto; // Referência ao objeto Projeto
 }

@@ -1,16 +1,14 @@
 package br.com.biblioteca.core.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import javax.persistence.*;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "pessoa")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pessoa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private String cpf;
     private boolean funcionario;

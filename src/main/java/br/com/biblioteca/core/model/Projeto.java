@@ -1,17 +1,16 @@
 package br.com.biblioteca.core.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import javax.persistence.*;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
-@Entity
-@Table(name = "projeto")
-@Data // Gera automaticamente getters, setters e outros métodos comuns
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Projeto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nome;
     private Date dataInicio;
     private Date dataPrevisaoFim;
@@ -20,8 +19,5 @@ public class Projeto {
     private String status;
     private Double orcamento;
     private String risco;
-
-    @ManyToOne
-    @JoinColumn(name = "idgerente", nullable = false)
-    private Pessoa gerente; // Relacionamento com a classe Pessoa
+    private Pessoa gerente; // Referência ao objeto Gerente (Pessoa)
 }
