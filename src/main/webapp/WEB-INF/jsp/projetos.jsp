@@ -31,7 +31,7 @@
                     <td>${projeto.id}</td>
                     <td>${projeto.nome}</td>
                     <td>${projeto.dataInicio}</td>
-                    <td>${projeto.previsaoTermino}</td>
+                    <td>${projeto.dataPrevisaoFim}</td>
                     <td>${projeto.status}</td>
                     <td>
                         <a href="<c:url value='/projetos/${projeto.id}'/>" class="btn btn-primary">Editar</a>

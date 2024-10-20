@@ -10,4 +10,7 @@ public interface PessoaGateway {
     Pessoa save (Pessoa pessoa);
     List<Pessoa> findAll ();
     Optional<Pessoa> findById(Long id);
+
+    void deleteById(Long id);
+    List<Pessoa> findGerentes();
 }

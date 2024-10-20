@@ -89,7 +89,12 @@
 
         <div class="mb-3">
             <label for="gerente" class="form-label">Gerente Responsável</label>
-            <input type="text" class="form-control" id="gerente" name="gerente.nome" value="${projeto.gerente != null ? projeto.gerente.nome : ''}" required>
+            <select class="form-control" id="gerente" name="gerente.id" required>
+                <option value="">Selecione um Gerente</option>
+                <c:forEach var="gerente" items="${gerentes}">
+                    <option value="${gerente.id}">${gerente.nome}</option>
+                </c:forEach>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>

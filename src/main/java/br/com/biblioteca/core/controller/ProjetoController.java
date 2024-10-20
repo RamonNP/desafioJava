@@ -1,7 +1,10 @@
 package br.com.biblioteca.core.controller;
 
+import br.com.biblioteca.core.model.Pessoa;
 import br.com.biblioteca.core.model.Projeto;
+import br.com.biblioteca.core.service.PessoaService;
 import br.com.biblioteca.core.service.ProjetoService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +16,11 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequestMapping("/projetos")
+@AllArgsConstructor
 public class ProjetoController {
 
-    @Autowired
-    private ProjetoService projetoService;
+    private final ProjetoService projetoService;
+    private final PessoaService pessoaService;
 
     @GetMapping
     public String getAllProjetos(Model model) {
@@ -61,8 +65,11 @@ public class ProjetoController {
     @GetMapping("/new")
     public String novoProjetoForm(Model model) {
         model.addAttribute("projeto", new Projeto());
+        List<Pessoa> gerentes = pessoaService.findGerentes(); // Obter gerentes
+        model.addAttribute("gerentes", gerentes); // Adiciona ao modelo
         return "projeto-form"; // Nome da JSP para o formulário de criação de novo projeto
     }
+
 
 
 }
