@@ -20,8 +20,16 @@ public class ProjetoProvider implements ProjetoGateway {
 
     @Override
     public Projeto save(Projeto projeto) {
-        var projetoEntity = projetoRepository.save(ProjetoMapper.INSTANCE.toEntity(projeto));
-        return ProjetoMapper.INSTANCE.toDomain(projetoEntity);
+        log.info("Iniciando o processo de salvamento do projeto: {}", projeto);
+
+        try {
+            var projetoEntity = projetoRepository.save(ProjetoMapper.INSTANCE.toEntity(projeto));
+            log.info("Projeto salvo com sucesso no banco de dados: {}", projetoEntity);
+            return ProjetoMapper.INSTANCE.toDomain(projetoEntity);
+        } catch (Exception e) {
+            log.error("Erro ao salvar o projeto: {} - Detalhes: {}", projeto, e.getMessage(), e);
+            throw e; // Relança a exceção para que o controle possa lidar com ela em outros níveis, se necessário
+        }
     }
 
     @Override

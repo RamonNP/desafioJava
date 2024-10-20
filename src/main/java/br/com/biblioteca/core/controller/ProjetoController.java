@@ -2,6 +2,7 @@ package br.com.biblioteca.core.controller;
 
 import br.com.biblioteca.core.model.Projeto;
 import br.com.biblioteca.core.service.ProjetoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@Slf4j
 @RequestMapping("/projetos")
 public class ProjetoController {
 
@@ -32,8 +34,16 @@ public class ProjetoController {
 
     @PostMapping
     public String createProjeto(@ModelAttribute Projeto projeto) {
-        projetoService.save(projeto);
-        return "redirect:/projetos";
+        log.info("Iniciando o processo de criação de um novo projeto: {}", projeto);
+
+        try {
+            projetoService.save(projeto);
+            log.info("Projeto criado com sucesso: {}", projeto.getNome());
+            return "redirect:/projetos";
+        } catch (Exception e) {
+            log.error("Erro ao criar o projeto: {} - Detalhes: {}", projeto, e.getMessage(), e);
+            return "error"; // Supondo que há uma página de erro
+        }
     }
 
     @PutMapping("/{id}")
@@ -53,4 +63,6 @@ public class ProjetoController {
         model.addAttribute("projeto", new Projeto());
         return "projeto-form"; // Nome da JSP para o formulário de criação de novo projeto
     }
+
+
 }

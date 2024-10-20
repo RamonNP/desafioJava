@@ -21,7 +21,7 @@
     <start-class>br.com.biblioteca.MainServer</start-class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>12</java.version>
+    <java.version>16</java.version>
     <jackson-version>2.11.0</jackson-version>
     <jettison-version>1.4.0</jettison-version>
   </properties>
@@ -136,8 +136,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <compilerVersion>12</compilerVersion>
-          <source>12</source>
-          <target>12</target>
+          <source>16</source>
+          <target>16</target>
         </configuration>
       </plugin>
       <plugin>

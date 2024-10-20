@@ -18,6 +18,6 @@ public class Projeto {
     private String descricao;
     private String status;
     private Double orcamento;
-    private String risco;
+    private Risco risco;
     private Pessoa gerente; // Referência ao objeto Gerente (Pessoa)
 }
