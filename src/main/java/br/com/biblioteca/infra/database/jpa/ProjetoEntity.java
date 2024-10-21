@@ -1,8 +1,9 @@
 package br.com.biblioteca.infra.database.jpa;
 
 import lombok.Data;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -14,9 +15,9 @@ public class ProjetoEntity {
     private Long id;
 
     private String nome;
-    private Date dataInicio;
-    private Date dataPrevisaoFim;
-    private Date dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataPrevisaoFim;
+    private LocalDate dataFim;
     private String descricao;
     private String status;
     private Double orcamento;

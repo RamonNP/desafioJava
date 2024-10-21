@@ -4,8 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -14,9 +15,12 @@ import java.util.List;
 public class Projeto {
     private Long id;
     private String nome;
-    private Date dataInicio;
-    private Date dataPrevisaoFim;
-    private Date dataFim;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate  dataInicio;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataPrevisaoFim;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate  dataFim;
     private String descricao;
     private StatusProjeto status;
     private Double orcamento;

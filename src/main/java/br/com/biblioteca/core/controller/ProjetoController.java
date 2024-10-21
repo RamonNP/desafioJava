@@ -34,7 +34,9 @@ public class ProjetoController {
     public String getProjetoById(@PathVariable Long id, Model model) {
         var projeto = projetoService.findById(id);
         model.addAttribute("projeto", projeto.orElse(null));
-        return "projeto-detalhes"; // Nome da JSP para detalhes do projeto
+        List<Pessoa> gerentes = pessoaService.findGerentes(); // Obter gerentes
+        model.addAttribute("gerentes", gerentes); // Adiciona ao modelo
+        return "projeto-form"; // Nome da JSP para detalhes do projeto
     }
 
     @PostMapping

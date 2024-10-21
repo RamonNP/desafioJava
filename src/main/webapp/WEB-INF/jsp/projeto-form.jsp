@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Gestão de Projetos</a>
@@ -53,15 +54,18 @@
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label for="dataInicio" class="form-label">Data de Início</label>
-                    <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="${projeto.dataInicio}" required>
+                    <input type="date" class="form-control" id="dataInicio" name="dataInicio"
+                           value="${projeto.dataInicio}" required>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="dataPrevisaoFim" class="form-label">Previsão de Término</label>
-                    <input type="date" class="form-control" id="dataPrevisaoFim" name="dataPrevisaoFim" value="${projeto.dataPrevisaoFim}" required>
+                    <input type="date" class="form-control" id="dataPrevisaoFim" name="dataPrevisaoFim"
+                           value="${projeto.dataPrevisaoFim}" required>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="dataFim" class="form-label">Data Real de Término</label>
-                    <input type="date" class="form-control" id="dataFim" name="dataFim" value="${projeto.dataFim}" placeholder="Caso já tenha terminado">
+                    <input type="date" class="form-control" id="dataFim" name="dataFim"
+                           value="${projeto.dataFim}" placeholder="Caso já tenha terminado">
                 </div>
             </div>
         </div>
@@ -106,22 +110,10 @@
                 <select class="form-control" id="gerente" name="gerente.id" required style="max-width: 250px;">
                     <option value="">Selecione um Gerente</option>
                     <c:forEach var="gerente" items="${gerentes}">
-                        <option value="${gerente.id}">${gerente.nome}</option>
+                        <option value="${gerente.id}" <c:if test="${projeto.gerente.id == gerente.id}">selected</c:if>>${gerente.nome}</option>
                     </c:forEach>
                 </select>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="<c:url value='/projetos' />" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
-
-<script src="<c:url value='/static/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'/>"></script>
-<script>
-    $(document).ready(function(){
-        $('#orcamento').mask('000.000.000.000.000,00', {reverse: true});
-    });
-</script>
-</body>
-</html>
+        <button type="submit" class="btn btn-primary">Salvar</button
