@@ -3,10 +3,11 @@ package br.com.biblioteca.infra.database.jpa;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "projeto")
-@Data // Gera automaticamente getters, setters e outros métodos comuns
+@Data
 public class ProjetoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +24,8 @@ public class ProjetoEntity {
 
     @ManyToOne
     @JoinColumn(name = "idgerente", nullable = false)
-    private PessoaEntity gerente; // Relacionamento com a classe Pessoa
+    private PessoaEntity gerente;
+
+    @OneToMany(mappedBy = "projeto")
+    private List<MembroEntity> funcionarios;
 }

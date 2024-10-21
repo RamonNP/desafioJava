@@ -13,4 +13,5 @@ public interface PessoaGateway {
 
     void deleteById(Long id);
     List<Pessoa> findGerentes();
+    List<Pessoa> findAllFuncionarios();
 }

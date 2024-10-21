@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PessoaRepository extends JpaRepository<PessoaEntity, Long> {
     List<PessoaEntity> findAllByGerenteTrue();
+    List<PessoaEntity> findAllByFuncionarioTrue();
 }

@@ -91,4 +91,18 @@ public class PessoaProvider implements PessoaGateway {
         }
     }
 
+    @Override
+    public List<Pessoa> findAllFuncionarios() {
+        try {
+            log.info("Buscando todas as pessoas que são funcionários.");
+            var funcionarios = pessoaRepository.findAllByFuncionarioTrue(); // Certifique-se de implementar esse método no repositório
+            return funcionarios.stream()
+                    .map(pessoaEntity -> modelMapper.map(pessoaEntity, Pessoa.class))
+                    .toList();
+        } catch (Exception e) {
+            log.error("Erro ao buscar funcionários: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
 }

@@ -11,4 +11,5 @@ public interface ProjetoGateway {
     List<Projeto> findAll();
     Optional<Projeto> findById(Long id);
     void deleteById(Long id);
+    List<Projeto> findAllComFuncionarios();
 }

@@ -94,4 +94,16 @@ public class ProjetoService {
             throw e; // Re-lançar a exceção para tratamento posterior
         }
     }
+
+    public List<Projeto> findAllComFuncionarios() {
+        try {
+            List<Projeto> projetosComFuncionarios = projetoGateway.findAllComFuncionarios();
+            log.info("Lista de projetos com funcionários recuperada com sucesso.");
+            return projetosComFuncionarios;
+        } catch (Exception e) {
+            log.error("Erro ao recuperar a lista de projetos com funcionários: {}", e.getMessage());
+            throw e; // Re-lançar a exceção para tratamento posterior
+        }
+    }
+
 }

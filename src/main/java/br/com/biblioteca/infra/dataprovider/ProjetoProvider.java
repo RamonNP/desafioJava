@@ -1,6 +1,7 @@
 package br.com.biblioteca.infra.dataprovider;
 
 import br.com.biblioteca.core.gateway.ProjetoGateway;
+import br.com.biblioteca.core.model.Membro;
 import br.com.biblioteca.core.model.Projeto;
 import br.com.biblioteca.infra.database.jpa.ProjetoEntity;
 import br.com.biblioteca.infra.repository.ProjetoRepository;
@@ -19,6 +20,7 @@ public class ProjetoProvider implements ProjetoGateway {
 
     private final ProjetoRepository projetoRepository;
     private final ModelMapper modelMapper;
+    private final MembroProvider membroGateway;
 
     @Override
     public Projeto save(Projeto projeto) {
@@ -73,4 +75,28 @@ public class ProjetoProvider implements ProjetoGateway {
             throw e;
         }
     }
+
+    @Override
+    public List<Projeto> findAllComFuncionarios() {
+        try {
+            var projetos = projetoRepository.findAll();
+
+            List<Projeto> projetosComFuncionarios = projetos.stream()
+                    .map(projetoEntity -> {
+                        Projeto projeto = modelMapper.map(projetoEntity, Projeto.class);
+                        projeto.setFuncionarios(
+                                membroGateway.findByProjetoId(projeto.getId()).stream().map(Membro::getPessoa).toList()
+                        );
+                        return projeto;
+                    })
+                    .toList();
+
+            log.info("Total de projetos com funcionários encontrados: {}", projetosComFuncionarios.size());
+            return projetosComFuncionarios;
+        } catch (Exception e) {
+            log.error("Erro ao buscar projetos com funcionários: {}", e.getMessage(), e);
+            throw e;
+        }
+    }
+
 }

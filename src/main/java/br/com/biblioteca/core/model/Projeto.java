@@ -1,10 +1,12 @@
 package br.com.biblioteca.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,4 +22,6 @@ public class Projeto {
     private Double orcamento;
     private Risco risco;
     private Pessoa gerente; // Referência ao objeto Gerente (Pessoa)
+    @JsonIgnore
+    private List<Pessoa> funcionarios; // Nova propriedade para armazenar os membros associados
 }
