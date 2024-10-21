@@ -6,7 +6,8 @@ import br.com.biblioteca.core.service.PessoaService;
 import br.com.biblioteca.core.service.ProjetoService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,10 +58,16 @@ public class ProjetoController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteProjeto(@PathVariable Long id) {
-        projetoService.deleteById(id);
-        return "redirect:/projetos";
+    public ResponseEntity<String> deleteProjeto(@PathVariable Long id) {
+        try {
+            projetoService.deleteById(id);
+            return ResponseEntity.ok("Projeto excluído com sucesso."); // Retorna uma resposta OK
+        } catch (Exception e) {
+            log.error("Erro ao excluir o projeto com ID {}: {}", id, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao excluir o projeto."); // Retorna erro
+        }
     }
+
 
     @GetMapping("/new")
     public String novoProjetoForm(Model model) {

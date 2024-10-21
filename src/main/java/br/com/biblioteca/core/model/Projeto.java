@@ -16,7 +16,7 @@ public class Projeto {
     private Date dataPrevisaoFim;
     private Date dataFim;
     private String descricao;
-    private String status;
+    private StatusProjeto status;
     private Double orcamento;
     private Risco risco;
     private Pessoa gerente; // Referência ao objeto Gerente (Pessoa)
