@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-public class MembroServiceTest  {
+class MembroServiceTest  {
 
     @Mock
     private MembroGateway membroGateway;
@@ -38,7 +38,7 @@ public class MembroServiceTest  {
     }
 
     @Test
-    public void testFindAllFuncionarios() {
+    void testFindAllFuncionarios() {
         // Simulando retorno do gateway
         Pessoa funcionario = new Pessoa(1L, "Funcionário 1", "12345678900", true, false);
         when(pessoaGateway.findAllFuncionarios()).thenReturn(List.of(funcionario));
@@ -52,7 +52,7 @@ public class MembroServiceTest  {
     }
 
     @Test
-    public void testAssociarFuncionariosAoProjeto_Success() {
+    void testAssociarFuncionariosAoProjeto_Success() {
         Long projetoId = 1L;
         Long funcionarioId = 1L;
 
@@ -78,7 +78,7 @@ public class MembroServiceTest  {
     }
 
     @Test
-    public void testRemoverFuncionarioDoProjeto_Success() {
+    void testRemoverFuncionarioDoProjeto_Success() {
         Long projetoId = 1L;
         Long funcionarioId = 1L;
 
@@ -91,7 +91,7 @@ public class MembroServiceTest  {
     }
 
     @Test
-    public void testRemoverFuncionarioDoProjeto_NotFound() {
+    void testRemoverFuncionarioDoProjeto_NotFound() {
         Long projetoId = 1L;
         Long funcionarioId = 1L;
 
