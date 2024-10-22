@@ -87,7 +87,7 @@
                                     <form action="<c:url value='/membros/remover' />" method="post" style="display: inline;">
                                         <input type="hidden" name="projetoId" value="${projeto.id}" />
                                         <input type="hidden" name="funcionarioId" value="${funcionario.id}" />
-                                        <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                                        <button type="submit" class="btn btn-danger" style="padding: 0.1rem 0.5rem; font-size: 0.75rem;">X</button>
                                     </form>
                                 </li>
                             </c:forEach>

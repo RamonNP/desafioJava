@@ -67,7 +67,7 @@
                 </div>
                 <div class="card-body">
                     <p>Gere relatórios detalhados sobre o andamento dos projetos e suas análises de viabilidade.</p>
-                    <a href="<c:url value='/relatorios' />" class="btn btn-warning">Acessar</a>
+                    <a href="<c:url value='' />" class="btn btn-warning">EM BREVE</a>
                 </div>
             </div>
         </div>
