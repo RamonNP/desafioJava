@@ -43,7 +43,7 @@ public class MembroProvider implements MembroGateway {
             log.info("Total de membros encontrados: {}", membros.size());
             return membros.stream()
                     .map(membroEntity -> modelMapper.map(membroEntity, Membro.class))
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             log.error("Erro ao buscar todos os membros: {}", e.getMessage(), e);
             throw e;
@@ -85,7 +85,7 @@ public class MembroProvider implements MembroGateway {
             log.info("Total de membros encontrados para o projeto ID {}: {}", projetoId, membros.size());
             return membros.stream()
                     .map(membroEntity -> modelMapper.map(membroEntity, Membro.class))
-                    .collect(Collectors.toList());
+                    .toList();
         } catch (Exception e) {
             log.error("Erro ao buscar membros do projeto com ID {}: {}", projetoId, e.getMessage(), e);
             throw e;

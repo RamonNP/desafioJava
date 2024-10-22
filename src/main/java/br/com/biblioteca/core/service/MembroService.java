@@ -1,10 +1,11 @@
 package br.com.biblioteca.core.service;
 
-import br.com.biblioteca.core.gateway.PessoaGateway;
 import br.com.biblioteca.core.gateway.MembroGateway;
+import br.com.biblioteca.core.gateway.PessoaGateway;
 import br.com.biblioteca.core.model.Membro;
 import br.com.biblioteca.core.model.Pessoa;
 import br.com.biblioteca.core.model.Projeto;
+import br.com.biblioteca.cross.exceptions.MembroException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class MembroService {
             return pessoaGateway.findAllFuncionarios();
         } catch (Exception e) {
             log.error("Erro ao buscar lista de funcionários", e);
-            throw new RuntimeException("Erro ao buscar lista de funcionários", e);
+            throw new MembroException("Erro ao buscar lista de funcionários", e);
         }
     }
 
@@ -35,7 +36,7 @@ public class MembroService {
             return membroGateway.findAll();
         } catch (Exception e) {
             log.error("Erro ao buscar lista de membros", e);
-            throw new RuntimeException("Erro ao buscar lista de membros", e);
+            throw new MembroException("Erro ao buscar lista de membros", e);
         }
     }
 
@@ -44,7 +45,7 @@ public class MembroService {
             return membroGateway.save(membro);
         } catch (Exception e) {
             log.error("Erro ao salvar membro", e);
-            throw new RuntimeException("Erro ao salvar membro", e);
+            throw new MembroException("Erro ao salvar membro", e);
         }
     }
 
@@ -62,7 +63,7 @@ public class MembroService {
             }
         } catch (Exception e) {
             log.error("Erro ao associar funcionários ao projeto com ID: {}", projetoId, e);
-            throw new RuntimeException("Erro ao associar funcionários ao projeto", e);
+            throw new MembroException("Erro ao associar funcionários ao projeto", e);
         }
     }
 
@@ -91,7 +92,7 @@ public class MembroService {
             }
         } catch (Exception e) {
             log.error("Erro ao buscar membros para o projeto ID: {}", projetoId, e);
-            throw new RuntimeException("Erro ao remover associações do projeto", e);
+            throw new MembroException("Erro ao remover associações do projeto", e);
         }
     }
     public void removerFuncionarioDoProjeto(Long projetoId, Long funcionarioId) {
@@ -106,7 +107,7 @@ public class MembroService {
             }
         } catch (Exception e) {
             log.error("Erro ao remover funcionário ID: {} do projeto ID: {}", funcionarioId, projetoId, e);
-            throw new RuntimeException("Erro ao remover funcionário do projeto", e);
+            throw new MembroException("Erro ao remover funcionário do projeto", e);
         }
     }
 

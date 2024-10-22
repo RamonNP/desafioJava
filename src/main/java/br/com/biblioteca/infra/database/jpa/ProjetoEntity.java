@@ -3,13 +3,16 @@ package br.com.biblioteca.infra.database.jpa;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "projeto")
 @Data
-public class ProjetoEntity {
+public class ProjetoEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L; // Adicione esta linha
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

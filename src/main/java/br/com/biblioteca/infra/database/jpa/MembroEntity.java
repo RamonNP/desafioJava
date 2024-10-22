@@ -16,12 +16,12 @@ public class MembroEntity implements Serializable {
     private MembroId id;
 
     @ManyToOne
-    @MapsId("projetoId")  // Referenciando a chave primária do projeto
+    @MapsId("projetoId")
     @JoinColumn(name = "idprojeto", nullable = false)
-    private ProjetoEntity projeto; // Relacionamento com a classe Projeto
+    private ProjetoEntity projeto;
 
     @ManyToOne
-    @MapsId("pessoaId")  // Referenciando a chave primária da pessoa
+    @MapsId("pessoaId")
     @JoinColumn(name = "idpessoa", nullable = false)
-    private PessoaEntity pessoa; // Relacionamento com a classe Pessoa
+    private PessoaEntity pessoa;
 }
