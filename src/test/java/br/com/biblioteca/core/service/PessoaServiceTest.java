@@ -161,4 +161,5 @@ class PessoaServiceTest {
         assertEquals("Erro ao buscar gerentes", exception.getMessage());
         verify(pessoaGateway, times(1)).findGerentes();
     }
+
 }

@@ -30,11 +30,11 @@
 
         function mostrarMensagem(mensagem, tipo) {
             const toastHTML = `
-                <div class="toast align-items-center text-bg-${tipo} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast align-items-center text-bg-`+tipo+` border-0" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="d-flex">
-                        <div class="toast-body">
-                            ${mensagem}
-                        </div>
+                        <div class="toast-body">`+
+                            mensagem +
+                        `</div>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                 </div>`;

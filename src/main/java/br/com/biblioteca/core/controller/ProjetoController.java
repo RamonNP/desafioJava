@@ -66,7 +66,7 @@ public class ProjetoController {
             return ResponseEntity.ok("Projeto excluído com sucesso."); // Retorna uma resposta OK
         } catch (Exception e) {
             log.error("Erro ao excluir o projeto com ID {}: {}", id, e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao excluir o projeto."); // Retorna erro
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()); // Retorna erro
         }
     }
 

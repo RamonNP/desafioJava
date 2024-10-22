@@ -161,4 +161,5 @@ class ProjetoServiceTest {
         assertEquals(2, result.size());
         verify(projetoGateway, times(1)).findAllComFuncionarios();
     }
+
 }
