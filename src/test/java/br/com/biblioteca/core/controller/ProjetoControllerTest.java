@@ -134,7 +134,7 @@ class ProjetoControllerTest {
     void deleteProjeto_WhenError_ShouldReturnErrorResponse() {
         // Arrange
         Long id = 1L;
-        doThrow(new RuntimeException("Error")).when(projetoService).deleteById(id);
+        doThrow(new RuntimeException("Erro ao excluir o projeto.")).when(projetoService).deleteById(id);
 
         // Act
         ResponseEntity<String> response = projetoController.deleteProjeto(id);
