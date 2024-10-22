@@ -24,9 +24,7 @@ public class MembroProvider implements MembroGateway {
     @Override
     public Membro save(Membro membro) {
         try {
-            log.info("Iniciando o salvamento do membro: {}", membro.getPessoa().getNome());
             var membroEntity = membroRepository.save(modelMapper.map(membro, MembroEntity.class));
-            log.info("Membro salvo com sucesso: {}", membro.getPessoa().getNome());
             return modelMapper.map(membroEntity, Membro.class);
         } catch (Exception e) {
             log.error("Erro ao salvar o membro: {} - {}", membro.getPessoa().getNome(), e.getMessage(), e);

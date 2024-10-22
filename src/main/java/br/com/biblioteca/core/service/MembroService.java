@@ -21,7 +21,7 @@ public class MembroService {
     private final PessoaGateway pessoaGateway;
     private final ProjetoService projetoService;
 
-    public List<Pessoa> findAllFuncionarios() {
+    public List<Pessoa> findAllFuncionarios() throws RuntimeException {
         try {
             return pessoaGateway.findAllFuncionarios();
         } catch (Exception e) {
@@ -54,19 +54,7 @@ public class MembroService {
             if (projetoOptional.isPresent()) {
                 Projeto projeto = projetoOptional.get();
                 for (Long funcionarioId : funcionarioIds) {
-                    try {
-                        Optional<Pessoa> funcionario = pessoaGateway.findById(funcionarioId);
-                        if (funcionario.isPresent()) {
-                            Membro membro = new Membro();
-                            membro.setProjeto(projeto);
-                            membro.setPessoa(funcionario.get());
-                            save(membro);
-                        } else {
-                            log.warn("Funcionário não encontrado com o ID: {}", funcionarioId);
-                        }
-                    } catch (Exception e) {
-                        log.error("Erro ao associar funcionário com ID: {} ao projeto: {}", funcionarioId, projetoId, e);
-                    }
+                    create(projetoId, funcionarioId, projeto);
                 }
             } else {
                 log.error("Projeto não encontrado com o ID: {}", projetoId);
@@ -78,16 +66,28 @@ public class MembroService {
         }
     }
 
+    private void create(Long projetoId, Long funcionarioId, Projeto projeto) {
+        try {
+            Optional<Pessoa> funcionario = pessoaGateway.findById(funcionarioId);
+            if (funcionario.isPresent()) {
+                Membro membro = new Membro();
+                membro.setProjeto(projeto);
+                membro.setPessoa(funcionario.get());
+                save(membro);
+            } else {
+                log.warn("Funcionário não encontrado com o ID: {}", funcionarioId);
+            }
+        } catch (Exception e) {
+            log.error("Erro ao associar funcionário com ID: {} ao projeto: {}", funcionarioId, projetoId, e);
+        }
+    }
+
     public void removerAssociacoesDoProjeto(Long projetoId) {
         try {
             List<Membro> membros = membroGateway.findByProjetoId(projetoId);
             for (Membro membro : membros) {
-                try {
-                    membroGateway.delete(membro);
-                    log.info("Membro removido do projeto ID: {} com sucesso", projetoId);
-                } catch (Exception e) {
-                    log.error("Erro ao remover membro com ID: {} do projeto: {}", membro.getPessoa().getNome(), projetoId, e);
-                }
+                membroGateway.delete(membro);
+                log.info("Membro removido do projeto ID: {} com sucesso", projetoId);
             }
         } catch (Exception e) {
             log.error("Erro ao buscar membros para o projeto ID: {}", projetoId, e);
